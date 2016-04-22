@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setImage(themeCode + "00");
         setImage(themeCode + "01");
         setImage(themeCode + "02");
-        setImage(themeCode + "03");
+        setImage(themeCode + "03");//
     }
 
     @Override
