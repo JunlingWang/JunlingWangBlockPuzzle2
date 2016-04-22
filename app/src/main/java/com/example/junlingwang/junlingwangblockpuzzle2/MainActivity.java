@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -151,18 +152,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeImageLeftTop (View view) {
         changeImage(imageCodeLeftTop);
+        evaluate();
     }
 
     public void changeImageRightTop (View view) {
         changeImage(imageCodeRightTop);
+        evaluate();
     }
 
     public void changeImageLeftBottom (View view) {
         changeImage(imageCodeLeftBottom);
+        evaluate();
     }
 
     public void changeImageRightBottom (View view) {
         changeImage(imageCodeRightBottom);
+        evaluate();
     }
 
     private void changeImage(String imageCode) {
@@ -173,6 +178,19 @@ public class MainActivity extends AppCompatActivity {
         int  index = rand.nextInt(3) + 1;
         int newNumber = (pictureNum + index) % 4;
         setImage(themeCode + newNumber + positionCode);
+    }
+
+    private void evaluate() {
+        String pictureIDLeftTop = Character.toString(imageCodeLeftTop.charAt(1));
+        String pictureIDRightTop = Character.toString(imageCodeRightTop.charAt(1));
+        String pictureIDLeftBottom = Character.toString(imageCodeLeftBottom.charAt(1));
+        String pictureIDRightBottom = Character.toString(imageCodeRightBottom.charAt(1));
+        if (pictureIDLeftBottom.equals(pictureIDLeftTop) &&
+                pictureIDLeftTop.equals(pictureIDRightTop) &&
+                pictureIDRightTop.equals(pictureIDRightBottom)) {
+            Toast.makeText(this, "Missing value(s)", Toast.LENGTH_LONG).show();
+            //makeSound();
+        }
     }
 
     //Choosing theme
