@@ -1,6 +1,7 @@
 package com.example.junlingwang.junlingwangblockpuzzle2;
 
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
     private String POSITION_CODE_LEFT_BOTTOM = "2";
     private String POSITION_CODE_RIGHT_BOTTOM = "3";
     public String themeCode = "0";
+    SoundPool pool;
+    boolean soundReady;
+    int wolfSoundID;
+    int birdSoundID;
+    int pigSoundID;
+    int tigerSoundID;
+    int balloonSoundID;
+    int carSoundID;
+    int planeSoundID;
+    int ufoSoundID;
+    int atomSoundID;
+    int dnaSoundID;
+    int galaxySoundID;
+    int spiralSoundID;
+    int cheeringID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         if (pictureIDLeftBottom.equals(pictureIDLeftTop) &&
                 pictureIDLeftTop.equals(pictureIDRightTop) &&
                 pictureIDRightTop.equals(pictureIDRightBottom)) {
-            Toast.makeText(this, "Missing value(s)", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Congratulations!", Toast.LENGTH_LONG).show();
             //makeSound();
         }
     }
