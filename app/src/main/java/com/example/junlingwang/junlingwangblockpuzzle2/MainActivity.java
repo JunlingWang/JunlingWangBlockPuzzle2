@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         pictureNumbers.remove(pictureNum);
         pictureNum = pictureNumbers.get(0);
         setImage(themeCode + pictureNum + POSITION_CODE_RIGHT_BOTTOM);
-
+//
     }
 
     public void startGame (View view){
