@@ -291,6 +291,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
+    //Statistics
+    public void goToRecord (View view){
+        Intent intent = new Intent(this, Statistics.class); // imported
+        startActivity(intent);
+//        startActivityForResult(intent, 1);
+    }
+
     public void addData () {
         //String nameString = name.getText().toString();
         //String breedString = breed.getText().toString();
