@@ -110,19 +110,19 @@ public class MainActivity extends AppCompatActivity {
         //int id = this.getResources().getIdentifier("p230spiral", "raw", this.getPackageName());
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_TOP)) {
             imageButtonLeftTop.setImageResource(id);
-            imageCodeLeftTop = Character.toString(imageCode.charAt(1));
+            imageCodeLeftTop = imageCode;
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_RIGHT_TOP)) {
             imageButtonRightTop.setImageResource(id);
-            imageCodeRightTop = Character.toString(imageCode.charAt(1));
+            imageCodeRightTop = imageCode;
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_BOTTOM)) {
             imageButtonLeftBottom.setImageResource(id);
-            imageCodeLeftBottom = Character.toString(imageCode.charAt(1));
+            imageCodeLeftBottom = imageCode;
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_RIGHT_BOTTOM)) {
             imageButtonRightBottom.setImageResource(id);
-            imageCodeRightBottom = Character.toString(imageCode.charAt(1));
+            imageCodeRightBottom = imageCode;
         }
     }
 
@@ -153,6 +153,18 @@ public class MainActivity extends AppCompatActivity {
         changeImage(imageCodeLeftTop);
     }
 
+    public void changeImageRightTop (View view) {
+        changeImage(imageCodeRightTop);
+    }
+
+    public void changeImageLeftBottom (View view) {
+        changeImage(imageCodeLeftBottom);
+    }
+
+    public void changeImageRightBottom (View view) {
+        changeImage(imageCodeRightBottom);
+    }
+
     private void changeImage(String imageCode) {
         String pictureCode = Character.toString(imageCode.charAt(1));// one digit string
         String positionCode = Character.toString(imageCode.charAt(2));// one digit string
@@ -160,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         Random rand = new Random();
         int  index = rand.nextInt(3) + 1;
         int newNumber = (pictureNum + index) % 4;
-        setImage(themeCode + newNumber + pictureCode);
+        setImage(themeCode + newNumber + positionCode);
     }
 
     //Choosing theme
