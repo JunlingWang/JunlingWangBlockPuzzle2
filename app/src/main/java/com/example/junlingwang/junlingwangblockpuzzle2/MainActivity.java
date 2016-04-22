@@ -17,8 +17,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -327,8 +329,9 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor.close();
 
-        String date = String.valueOf(System.currentTimeMillis());
-
-        records.add(currentPictureName, String.valueOf(timeCount), "today");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        String date = sdf.format(new Date());
+        records.add(currentPictureName, String.valueOf(timeCount), date);
+        Log.i(MainActivity.class.toString(), date);
     }
 }
