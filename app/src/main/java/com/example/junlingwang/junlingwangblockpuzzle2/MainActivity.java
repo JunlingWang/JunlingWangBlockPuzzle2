@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         setImage(themeCode + "01");
         setImage(themeCode + "02");
         setImage(themeCode + "03");
+        //Four lines above sets the beginning picture of the game (the wolf)
 
         pool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -91,9 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        //airhronID = pool.load(this, R.raw.airhorn, 1);
-        //ufoID = pool.load(this, R.raw.ufo, 1);
-        //kidID = pool.load(this, R.raw.kidlaugh, 1);
+
         wolfSoundID = pool.load(this, R.raw.a00wolf, 1);
         birdSoundID = pool.load(this, R.raw.a01bird, 1);
         pigSoundID = pool.load(this, R.raw.a02pig, 1);
@@ -107,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         galaxySoundID = pool.load(this, R.raw.a22galaxy, 1);
         spiralSoundID = pool.load(this, R.raw.a23spiral, 1);
         cheeringID = pool.load(this, R.raw.cheering, 1);
+
     }
 
     @Override
@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Setting right pictures to the right places
     private void setImage(String imageCode){
         String pictureToSet = "w_bird";
         List<String> pictureNames = new ArrayList<>(
@@ -148,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
                         "p220galaxy", "p221galaxy", "p222galaxy","p223galaxy",
                         "p230spiral", "p231spiral", "p232spiral","p233spiral",
                         "w_bird"
+                        //The name of each picture consists of information about
+                        // its position, content and the theme it belongs
                         )
         );
         for (int i=0; i<pictureNames.size(); i++){
@@ -159,14 +162,15 @@ public class MainActivity extends AppCompatActivity {
 
         int id = getResources()
                 .getIdentifier(pictureToSet, "drawable", getPackageName());
-        //int id = this.getResources().getIdentifier("p230spiral", "raw", this.getPackageName());
+        //If statements below extract position codes from the imageCode,
+        //and decide where the pictures should go.
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_TOP)) {
-            imageButtonLeftTop.setImageResource(id);
-            imageCodeLeftTop = imageCode;
+            imageButtonLeftTop.setImageResource(id); // Change the picture of specific position.
+            imageCodeLeftTop = imageCode; // update the imageCode value, so it can be used for evaluation.
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_RIGHT_TOP)) {
             imageButtonRightTop.setImageResource(id);
-            imageCodeRightTop = imageCode;
+            imageCodeRightTop = imageCode;// update the imageCode value, so it can be used for evaluation.
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_BOTTOM)) {
             imageButtonLeftBottom.setImageResource(id);
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             imageCodeRightBottom = imageCode;
         }
     }
-
+    // This method randomizes the pictures.
     private void mixPictures(){
         List<String> pictureNumbers = new ArrayList<>(Arrays.asList("0","1","2","3"));
         Random rand = new Random();
@@ -185,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
         String pictureNum = pictureNumbers.get(index);
         setImage(themeCode + pictureNum + POSITION_CODE_LEFT_TOP);
         pictureNumbers.remove(pictureNum);
+        // Remove the used picture number,
+        // so that there won't be picture parts from the same picture.
         index = rand.nextInt(3);
         pictureNum = pictureNumbers.get(index);
         setImage(themeCode + pictureNum + POSITION_CODE_RIGHT_TOP);
@@ -199,27 +205,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame (View view){
         mixPictures();
-    }
+    } // onClick method
 
     public void changeImageLeftTop (View view) {
         changeImage(imageCodeLeftTop);
         evaluate();
-    }
+    }//onclick method of the left top image button.
 
     public void changeImageRightTop (View view) {
         changeImage(imageCodeRightTop);
         evaluate();
-    }
+    }//onclick method of the right top image button.
 
     public void changeImageLeftBottom (View view) {
         changeImage(imageCodeLeftBottom);
         evaluate();
-    }
+    }//onclick method of the left bottom image button.
 
     public void changeImageRightBottom (View view) {
         changeImage(imageCodeRightBottom);
         evaluate();
-    }
+    }//onclick method of the right bottom image button.
 
     private void changeImage(String imageCode) {
         String pictureCode = Character.toString(imageCode.charAt(1));// one digit string
@@ -228,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
         Random rand = new Random();
         int  index = rand.nextInt(3) + 1;
         int newNumber = (pictureNum + index) % 4;
+        // This is to make sure there must be a different picture after click.
         setImage(themeCode + newNumber + positionCode);
     }
 
@@ -241,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                 pictureIDRightTop.equals(pictureIDRightBottom)) {
             Toast.makeText(this, currentPictureName, Toast.LENGTH_LONG).show();
             makeSound();
-            addData();
+            addData(); //add a record to database
         }
     }
 
@@ -314,7 +321,8 @@ public class MainActivity extends AppCompatActivity {
                     timeCount = timeCount + Integer.valueOf(times);
                     records.delete();
                 }
-                // do what ever you want here (Integer.valueOf(times) != 0)
+                // If there is a record of same picture,
+                // add a new one with updated number, and delete the old one.
             }while(cursor.moveToNext());
         }
         cursor.close();

@@ -32,16 +32,7 @@ public class Statistics extends AppCompatActivity {
 
         records = new Database (this);
         Cursor cursor = records.getAllCursor();
-
-//        int count = cursor.getCount();
-//        System.out.println("count: " + count);
-//        while (cursor.moveToNext()) {
-//            String name = cursor.getString(0);
-//            String breed = cursor.getString(1);
-//            System.out.println(String.format("%s, %s", name, breed));
-//        }
-//        cursor.close();
-
+        
         ListView listView = (ListView) findViewById(R.id.listView);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 R.layout.item_view,
