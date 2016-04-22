@@ -1,12 +1,14 @@
 package com.example.junlingwang.junlingwangblockpuzzle2;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,7 +73,37 @@ public class MainActivity extends AppCompatActivity {
         setImage(themeCode + "00");
         setImage(themeCode + "01");
         setImage(themeCode + "02");
-        setImage(themeCode + "03");//
+        setImage(themeCode + "03");
+
+        pool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+            @Override
+            public void onLoadComplete(SoundPool soundPool, int sampleID, int status) {
+                if (status != 0) {
+                    Log.e("soundPoolDemo", "failed to load sound");
+                    return;
+                }
+                Log.e("soundPoolDemo", "loaded" + sampleID);
+                soundReady = true;
+
+            }
+        });
+        //airhronID = pool.load(this, R.raw.airhorn, 1);
+        //ufoID = pool.load(this, R.raw.ufo, 1);
+        //kidID = pool.load(this, R.raw.kidlaugh, 1);
+        wolfSoundID = pool.load(this, R.raw.a00wolf, 1);
+        birdSoundID = pool.load(this, R.raw.a01bird, 1);
+        pigSoundID = pool.load(this, R.raw.a02pig, 1);
+        tigerSoundID = pool.load(this, R.raw.a03tiger, 1);
+        balloonSoundID = pool.load(this, R.raw.a10balloon, 1);
+        carSoundID = pool.load(this, R.raw.a11car, 1);
+        planeSoundID = pool.load(this, R.raw.a12plane, 1);
+        ufoSoundID = pool.load(this, R.raw.a13ufo, 1);
+        atomSoundID = pool.load(this, R.raw.a20atom, 1);
+        dnaSoundID = pool.load(this, R.raw.a21dna, 1);
+        galaxySoundID = pool.load(this, R.raw.a22galaxy, 1);
+        spiralSoundID = pool.load(this, R.raw.a23spiral, 1);
+        cheeringID = pool.load(this, R.raw.cheering, 1);
     }
 
     @Override
@@ -205,7 +237,13 @@ public class MainActivity extends AppCompatActivity {
                 pictureIDLeftTop.equals(pictureIDRightTop) &&
                 pictureIDRightTop.equals(pictureIDRightBottom)) {
             Toast.makeText(this, "Congratulations!", Toast.LENGTH_LONG).show();
-            //makeSound();
+            makeSound();
+        }
+    }
+
+    private void makeSound() {
+        if (soundReady) {
+            pool.play(cheeringID, 1, 1, 1, 0, 1);
         }
     }
 
