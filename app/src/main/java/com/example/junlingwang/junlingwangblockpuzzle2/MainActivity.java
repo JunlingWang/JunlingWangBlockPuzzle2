@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     int galaxySoundID;
     int spiralSoundID;
     int cheeringID;
-
+    private Database records;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
         //String nameString = name.getText().toString();
         //String breedString = breed.getText().toString();
         records = new Database(this); // this statement creates a new object and call the onCreate() method.
-        records.add(picture, times, date);
+        records.add(currentPictureName, "1", "today");
         //Intent go_to = new Intent(this, MainActivity.class);
         //startActivity(go_to);
     }
