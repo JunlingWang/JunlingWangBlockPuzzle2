@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -307,11 +308,13 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = records.getAllCursor();
         if (cursor.moveToFirst()){
             do{
-                String times = cursor.getString(cursor.getColumnIndex("times"));
-                if (Integer.valueOf(times) != 0){
-                    timeCount += Integer.valueOf(times);
+                String picture = cursor.getString(cursor.getColumnIndex("picture"));
+                if (currentPictureName.equals(picture)){
+                    String times = cursor.getString(cursor.getColumnIndex("times"));
+                    timeCount = timeCount + Integer.valueOf(times);
+                    records.delete(currentPictureName);
                 }
-                // do what ever you want here
+                // do what ever you want here (Integer.valueOf(times) != 0)
             }while(cursor.moveToNext());
         }
         cursor.close();

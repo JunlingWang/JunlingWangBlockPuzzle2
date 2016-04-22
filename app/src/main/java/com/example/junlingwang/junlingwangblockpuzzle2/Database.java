@@ -33,7 +33,11 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void add(String picture, String times, String date){
-        this.getWritableDatabase().execSQL("INSERT INTO Records (picture, times, date) VALUES (\"" + picture +"\", \""+times+"\", \""+date+"\");");
+        this.getWritableDatabase().execSQL("INSERT INTO Records (picture, times, date) VALUES (\"" + picture + "\", \"" + times + "\", \"" + date + "\");");
+    }
+
+    public void delete(String picture){
+        this.getWritableDatabase().execSQL("DELETE FROM Records WHERE picture = "+ picture +";");
     }
 
     public Cursor getAllCursor() {
