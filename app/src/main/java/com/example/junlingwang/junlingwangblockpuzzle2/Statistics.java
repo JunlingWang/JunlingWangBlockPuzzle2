@@ -32,7 +32,7 @@ public class Statistics extends AppCompatActivity {
 
         records = new Database (this);
         Cursor cursor = records.getAllCursor();
-        
+
         ListView listView = (ListView) findViewById(R.id.listView);
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 R.layout.item_view,

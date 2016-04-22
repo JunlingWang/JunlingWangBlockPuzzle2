@@ -327,6 +327,8 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor.close();
 
+        String date = String.valueOf(System.currentTimeMillis());
+
         records.add(currentPictureName, String.valueOf(timeCount), "today");
     }
 }
