@@ -110,15 +110,19 @@ public class MainActivity extends AppCompatActivity {
         //int id = this.getResources().getIdentifier("p230spiral", "raw", this.getPackageName());
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_TOP)) {
             imageButtonLeftTop.setImageResource(id);
+            imageCodeLeftTop = Character.toString(imageCode.charAt(1));
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_RIGHT_TOP)) {
             imageButtonRightTop.setImageResource(id);
+            imageCodeRightTop = Character.toString(imageCode.charAt(1));
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_LEFT_BOTTOM)) {
             imageButtonLeftBottom.setImageResource(id);
+            imageCodeLeftBottom = Character.toString(imageCode.charAt(1));
         }
         if (Character.toString(imageCode.charAt(2)).equals(POSITION_CODE_RIGHT_BOTTOM)) {
             imageButtonRightBottom.setImageResource(id);
+            imageCodeRightBottom = Character.toString(imageCode.charAt(1));
         }
     }
 
@@ -145,6 +149,20 @@ public class MainActivity extends AppCompatActivity {
         mixPictures();
     }
 
+    public void changeImageLeftTop (View view) {
+        changeImage(imageCodeLeftTop);
+    }
+
+    private void changeImage(String imageCode) {
+        String pictureCode = Character.toString(imageCode.charAt(1));// one digit string
+        String positionCode = Character.toString(imageCode.charAt(2));// one digit string
+        int pictureNum = Integer.valueOf(pictureCode);
+        Random rand = new Random();
+        int  index = rand.nextInt(3) + 1;
+        int newNumber = (pictureNum + index) % 4;
+        setImage(themeCode + newNumber + pictureCode);
+    }
+
     //Choosing theme
     public void goToSettings (View view) {
         Intent intent = new Intent(this, themeChoosing.class); // imported
@@ -156,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             themeCode = data.getStringExtra("MESSAGE");
         }
+        mixPictures();
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
