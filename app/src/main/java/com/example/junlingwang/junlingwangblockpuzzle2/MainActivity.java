@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         imageButtonRightTop = (ImageButton) findViewById(R.id.imageButtonRightTop);
         imageButtonLeftBottom = (ImageButton) findViewById(R.id.imageButtonLeftBottom);
         imageButtonRightBottom = (ImageButton) findViewById(R.id.imageButtonRightBottom);
-        setImage("000");
-        setImage("001");
-        setImage("002");
-        setImage("003");
+        setImage(themeCode + "00");
+        setImage(themeCode + "01");
+        setImage(themeCode + "02");
+        setImage(themeCode + "03");
     }
 
     @Override
@@ -146,9 +146,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Choosing theme
-    public void goToSetting (View view) {
+    public void goToSettings (View view) {
         Intent intent = new Intent(this, themeChoosing.class); // imported
-        startActivity(intent);
-        //startActivityForResult(intent, 1);
+//        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            themeCode = data.getStringExtra("MESSAGE");
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
