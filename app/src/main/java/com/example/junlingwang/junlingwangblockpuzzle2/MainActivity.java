@@ -1,6 +1,7 @@
 package com.example.junlingwang.junlingwangblockpuzzle2;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
@@ -239,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 pictureIDRightTop.equals(pictureIDRightBottom)) {
             Toast.makeText(this, currentPictureName, Toast.LENGTH_LONG).show();
             makeSound();
+            addData();
         }
     }
 
@@ -300,11 +302,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addData () {
-        //String nameString = name.getText().toString();
-        //String breedString = breed.getText().toString();
+        int timeCount = 1;
         records = new Database(this); // this statement creates a new object and call the onCreate() method.
-        records.add(currentPictureName, "1", "today");
-        //Intent go_to = new Intent(this, MainActivity.class);
-        //startActivity(go_to);
+        Cursor cursor = records.getAllCursor();
+        if (cursor.moveToFirst()){
+            do{
+                String times = cursor.getString(cursor.getColumnIndex("times"));
+                if (Integer.valueOf(times) != 0){
+                    timeCount += Integer.valueOf(times);
+                }
+                // do what ever you want here
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        records.add(currentPictureName, String.valueOf(timeCount), "today");
     }
 }
