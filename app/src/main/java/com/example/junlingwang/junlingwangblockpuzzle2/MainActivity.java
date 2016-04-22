@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     int spiralSoundID;
     int cheeringID;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -243,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeSound() {
         if (soundReady) {
-            pool.play(cheeringID, (float)0.4, (float)0.4, 1, 0, 1);
+            pool.play(cheeringID, (float) 0.4, (float) 0.4, 1, 0, 1);
             if (currentPictureName.equals("wolf")) {
                 pool.play(wolfSoundID, 1, 1, 1, 0, 1);
             }else if(currentPictureName.equals("bird")) {
@@ -288,5 +289,14 @@ public class MainActivity extends AppCompatActivity {
         }
         mixPictures();
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void addData () {
+        //String nameString = name.getText().toString();
+        //String breedString = breed.getText().toString();
+        records = new Database(this); // this statement creates a new object and call the onCreate() method.
+        records.add(picture, times, date);
+        //Intent go_to = new Intent(this, MainActivity.class);
+        //startActivity(go_to);
     }
 }
