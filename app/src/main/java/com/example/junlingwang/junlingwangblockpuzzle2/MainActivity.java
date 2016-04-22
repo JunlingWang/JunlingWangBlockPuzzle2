@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                 if (currentPictureName.equals(picture)){
                     String times = cursor.getString(cursor.getColumnIndex("times"));
                     timeCount = timeCount + Integer.valueOf(times);
-                    records.delete(currentPictureName);
+                    records.delete();
                 }
                 // do what ever you want here (Integer.valueOf(times) != 0)
             }while(cursor.moveToNext());

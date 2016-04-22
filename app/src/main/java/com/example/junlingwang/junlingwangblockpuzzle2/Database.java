@@ -36,8 +36,8 @@ public class Database extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL("INSERT INTO Records (picture, times, date) VALUES (\"" + picture + "\", \"" + times + "\", \"" + date + "\");");
     }
 
-    public void delete(String picture){
-        this.getWritableDatabase().execSQL("DELETE FROM Records WHERE picture = "+ picture +";");
+    public void delete(){
+        this.getWritableDatabase().execSQL("DELETE FROM Records;");
     }
 
     public Cursor getAllCursor() {
