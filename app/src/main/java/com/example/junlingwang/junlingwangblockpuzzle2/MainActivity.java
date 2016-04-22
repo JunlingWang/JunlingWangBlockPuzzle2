@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeSound() {
         if (soundReady) {
-            pool.play(cheeringID, 1, 1, 1, 0, 1);
+            pool.play(cheeringID, (float)0.4, (float)0.4, 1, 0, 1);
             if (currentPictureName.equals("wolf")) {
                 pool.play(wolfSoundID, 1, 1, 1, 0, 1);
             }else if(currentPictureName.equals("bird")) {
@@ -268,6 +268,8 @@ public class MainActivity extends AppCompatActivity {
                 pool.play(dnaSoundID, 1, 1, 1, 0, 1);
             }else if(currentPictureName.equals("galaxy")) {
                 pool.play(galaxySoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("spiral")) {
+                pool.play(spiralSoundID, 1, 1, 1, 0, 1);
             }
 
         }
