@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    tools:context="com.example.junlingwang.junlingwangblockpuzzle.ThemeChoosing"
+    tools:showIn="@layout/activity_theme_choosing">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+        <ImageButton
+            android:onClick="chooseAnimals"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageButtonAnimals"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_rowSpan="1"
+            android:src = "@drawable/w_bird"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="-15dp"
+            />
+
+        <Button
+            android:onClick="chooseAnimals"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="Animals"
+            android:id="@+id/button" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <ImageButton
+            android:onClick="chooseVehicles"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageButtonVehicles"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_rowSpan="1"
+            android:src = "@drawable/w_car"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="-15dp"
+            />
+        <Button
+            android:onClick="chooseVehicles"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="Vehicles"
+            android:id="@+id/button1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+        <ImageButton
+            android:onClick="chooseScience"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageButtonScience"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="1"
+            android:layout_rowSpan="1"
+            android:src = "@drawable/w_atom"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="-10dp"
+            android:layout_marginBottom="-15dp"
+            />
+        <Button
+            android:onClick="chooseScience"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="Science"
+            android:id="@+id/button2" />
+    </LinearLayout>
+
+</LinearLayout>
