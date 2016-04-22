@@ -1,5 +1,6 @@
 package com.example.junlingwang.junlingwangblockpuzzle2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -138,10 +139,16 @@ public class MainActivity extends AppCompatActivity {
         pictureNumbers.remove(pictureNum);
         pictureNum = pictureNumbers.get(0);
         setImage(themeCode + pictureNum + POSITION_CODE_RIGHT_BOTTOM);
-//
     }
 
     public void startGame (View view){
         mixPictures();
+    }
+
+    //Choosing theme
+    public void goToSetting (View view) {
+        Intent intent = new Intent(this, themeChoosing.class); // imported
+        startActivity(intent);
+        //startActivityForResult(intent, 1);
     }
 }
