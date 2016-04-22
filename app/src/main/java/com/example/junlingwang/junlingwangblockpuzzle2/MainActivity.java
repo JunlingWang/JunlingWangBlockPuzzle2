@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i<pictureNames.size(); i++){
             if(pictureNames.get(i).contains(imageCode)){
                 pictureToSet = pictureNames.get(i);
-                currentPictureName = pictureToSet.substring(3);
+                currentPictureName = pictureToSet.substring(4);
             }
         }
 
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         if (pictureIDLeftBottom.equals(pictureIDLeftTop) &&
                 pictureIDLeftTop.equals(pictureIDRightTop) &&
                 pictureIDRightTop.equals(pictureIDRightBottom)) {
-            Toast.makeText(this, "Congratulations!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, currentPictureName, Toast.LENGTH_LONG).show();
             makeSound();
         }
     }
@@ -244,6 +244,32 @@ public class MainActivity extends AppCompatActivity {
     private void makeSound() {
         if (soundReady) {
             pool.play(cheeringID, 1, 1, 1, 0, 1);
+            if (currentPictureName.equals("wolf")) {
+                pool.play(wolfSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("bird")) {
+                pool.play(birdSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("pig")) {
+                pool.play(pigSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("tiger")) {
+                pool.play(tigerSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("balloon")) {
+                pool.play(balloonSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("car")) {
+                pool.play(carSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("car")) {
+                pool.play(carSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("plane")) {
+                pool.play(planeSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("ufo")) {
+                pool.play(ufoSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("atom")) {
+                pool.play(atomSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("dna")) {
+                pool.play(dnaSoundID, 1, 1, 1, 0, 1);
+            }else if(currentPictureName.equals("galaxy")) {
+                pool.play(galaxySoundID, 1, 1, 1, 0, 1);
+            }
+
         }
     }
 
