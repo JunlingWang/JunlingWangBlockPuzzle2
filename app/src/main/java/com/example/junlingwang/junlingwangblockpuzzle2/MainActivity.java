@@ -24,37 +24,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
-    public ImageButton imageButtonLeftTop;
-    public ImageButton imageButtonRightTop;
-    public ImageButton imageButtonLeftBottom;
-    public ImageButton imageButtonRightBottom;
-    private String imageCodeLeftTop;
-    private String imageCodeRightTop;
-    private String imageCodeLeftBottom;
-    private String imageCodeRightBottom;
-    private String currentPictureName;
-    private String POSITION_CODE_LEFT_TOP = "0";
-    private String POSITION_CODE_RIGHT_TOP = "1";
-    private String POSITION_CODE_LEFT_BOTTOM = "2";
-    private String POSITION_CODE_RIGHT_BOTTOM = "3";
-    public String themeCode = "0";
-    SoundPool pool;
-    boolean soundReady;
-    int wolfSoundID;
-    int birdSoundID;
-    int pigSoundID;
-    int tigerSoundID;
-    int balloonSoundID;
-    int carSoundID;
-    int planeSoundID;
-    int ufoSoundID;
-    int atomSoundID;
-    int dnaSoundID;
-    int galaxySoundID;
-    int spiralSoundID;
-    int cheeringID;
-    private Database records;
+public class MainActivity extends pictureList {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,27 +105,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Setting right pictures to the right places
-    private void setImage(String imageCode){
-        String pictureToSet = "w_bird";
-        List<String> pictureNames = new ArrayList<>(
-                Arrays.asList(
-                        "p000wolf", "p001wolf", "p002wolf", "p003wolf",
-                        "p010bird", "p011bird", "p012bird","p013bird",
-                        "p020pig", "p021pig", "p022pig","p023pig",
-                        "p030tiger", "p031tiger", "p032tiger","p033tiger",
-                        "p100balloon", "p101balloon", "p102balloon","p103balloon",
-                        "p110car", "p111car", "p112car","p113car",
-                        "p120plane", "p121plane", "p122plane","p123plane",
-                        "p130ufo", "p131ufo", "p132ufo","p133ufo",
-                        "p200atom", "p201atom", "p202atom","p203atom",
-                        "p210dna", "p211dna", "p212dna","p213dna",
-                        "p220galaxy", "p221galaxy", "p222galaxy","p223galaxy",
-                        "p230spiral", "p231spiral", "p232spiral","p233spiral",
-                        "w_bird"
-                        //The name of each picture consists of information about
-                        // its position, content and the theme it belongs
-                        )
-        );
+    public void setImage(String imageCode){
+        String pictureToSet = "w_bird";// this is the whole name string of the picture to set
+        //pictureNames is a list imported from pictureList.java
+        //it contains the whole set of the names of all the pictures
         for (int i=0; i<pictureNames.size(); i++){
             if(pictureNames.get(i).contains(imageCode)){
                 pictureToSet = pictureNames.get(i);
@@ -229,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         evaluate();
     }//onclick method of the right bottom image button.
 
+    /*
     private void changeImage(String imageCode) {
         String pictureCode = Character.toString(imageCode.charAt(1));// one digit string
         String positionCode = Character.toString(imageCode.charAt(2));// one digit string
@@ -237,6 +192,22 @@ public class MainActivity extends AppCompatActivity {
         int  index = rand.nextInt(3) + 1;
         int newNumber = (pictureNum + index) % 4;
         // This is to make sure there must be a different picture after click.
+        setImage(themeCode + newNumber + positionCode);
+    }
+    */
+
+    private void changeImage (String imageCode) {
+        String pictureCode = Character.toString(imageCode.charAt(1));// one digit string
+        String positionCode = Character.toString(imageCode.charAt(2));
+        int pictureNum = Integer.valueOf(pictureCode);
+        int newNumber = 0;
+        for (int i = 0; i < 100; i++) {
+            Random rand = new Random();
+            newNumber = rand.nextInt(4);
+            if (newNumber != pictureNum) {
+                break;
+            }
+        }
         setImage(themeCode + newNumber + positionCode);
     }
 
@@ -283,6 +254,8 @@ public class MainActivity extends AppCompatActivity {
                 pool.play(galaxySoundID, 1, 1, 1, 0, 1);
             }else if(currentPictureName.equals("spiral")) {
                 pool.play(spiralSoundID, 1, 1, 1, 0, 1);
+            }else{
+                pool.play(cheeringID, (float) 0.4, (float) 0.4, 1, 0, 1);
             }
 
         }

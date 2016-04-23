@@ -25,6 +25,10 @@
         <activity
             android:name=".Statistics"
             android:label="@string/title_activity_statistics"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pictureList"
+            android:label="@string/title_activity_picture_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
